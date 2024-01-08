@@ -1,0 +1,40 @@
+<?php
+
+function srednia(){
+    $total=0;
+    foreach (func_get_args() as $value){
+        $total += (int)$value;
+    }
+    return $total/func_num_args();
+}
+function kwadratowe(){
+    $tablica=[];
+    foreach (func_get_args() as $argumenty){
+       array_push($tablica,$argumenty);
+    }
+    $delta=pow($tablica[1],2)-(4*$tablica[0]*$tablica[2]);
+    if ($delta<0){
+        return null;
+    }
+    elseif ($delta==0) {
+        return ((-($tablica[1]))/((2*$tablica[0])));
+    }
+    else{
+        return array((-($tablica[1])+sqrt($delta))/(2*($tablica[0])),(-($tablica[1])-sqrt($delta))/(2*($tablica[0])));
+    }
+}
+$rownanie=kwadratowe(1,-5,4);
+echo ("rozwiązanie równania kwadratowego: ");
+if($rownanie==null){
+    echo "brak rozwiązań";
+}
+elseif (is_array($rownanie)) {
+    foreach($rownanie as $wynik){
+        echo " ",$wynik;
+    }
+}
+else{
+    echo $rownanie;
+}
+
+?>

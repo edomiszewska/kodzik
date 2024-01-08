@@ -1,0 +1,27 @@
+<?php
+
+function srednia(){
+    $total=0;
+    foreach (func_get_args() as $value){
+        $total += (int)$value;
+    }
+    return $total/func_num_args();
+}
+function kwadratowe(){
+    $tablica=[];
+    foreach (func_get_args() as $argumenty){
+       array_push($tablica,$argumenty);
+    }
+    $delta=pow($tablica[1],2)-(4*$tablica[0]*$tablica[2]);
+    if ($delta<0){
+        return "brak rozwiązań";
+    }
+    elseif ($delta==0) {
+        return ((-($tablica[1]))/((2*$tablica[0])));
+    }
+    else{
+        return array((-($tablica[1])+sqrt($delta))/(2*($tablica[0])),(-($tablica[1])-sqrt($delta))/(2*($tablica[0])));
+    }
+}
+print_r (kwadratowe(2,-1,-1));
+?>
